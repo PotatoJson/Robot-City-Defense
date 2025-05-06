@@ -546,6 +546,11 @@ class GameScene extends Phaser.Scene {
     if (!this.playerInvincible) {
       this.takePlayerDamage();
     }
+    this.playExplosion(enemy.x, enemy.y, 1.2);
+    this.sound.play('enemyExplosion', {
+      volume: 0.6,
+      rate: 3 // 🔊 Higher pitch + faster playback
+    });
     this.healthText.setText('Health: ' + this.playerHealth);
   
     if (this.playerHealth <= 0) {
@@ -582,7 +587,11 @@ class GameScene extends Phaser.Scene {
   
     if (!this.playerInvincible) {
       this.takePlayerDamage();
-      this.sound.play('enemyExplosion');
+      this.sound.play('enemyExplosion', {
+        volume: 0.6,
+        rate: 2.5 // 🔊 Higher pitch + faster playback
+      });
+      this.playExplosion(heavy.x, heavy.y, 1.2);
     }
   }
   
